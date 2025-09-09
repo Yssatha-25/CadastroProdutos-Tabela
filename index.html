@@ -30,8 +30,8 @@
 
     <div id="CadastroProdutos" class="hidden">
         <p>Nome <input type="text" placeholder="Digite seu nome" id="produtoInput"></p>
-        <p>Preço <input type="text" placeholder="Digite o preço do produto" id="precoInput"></p>
-        <p>Quantidade <input type="text" placeholder="Informe a quantidade de unidades desse produto" id="qntdInput"></p>
+        <p>Preço <input type="number" placeholder="Digite o preço do produto" id="precoInput"></p>
+        <p>Quantidade <input type="number" placeholder="Informe a quantidade de unidades desse produto" id="qntdInput"></p>
         <br>
         <button onclick="CadastrarProduto()">Salvar</button>
         <button onclick="FecharCadastro()">Cancelar</button>
@@ -48,9 +48,35 @@
             document.getElementById("TabelaProdutos").classList.remove("hidden")
         }
 
+        const produtos=[]
+        const precos=[]
+        const quantidades=[]
+
+        let produto=document.getElementById("produtoInput")
+        let preco=document.getElementById("precoInput")
+        let quantidade=document.getElementById("qntdInput")
+
         function CadastrarProduto(){
+            let existeProduto=produtos.includes(produto.value)
+          
+            if(existeProduto==false && produto.value!="" && preco.value!="" && quantidade.value!=""){
+                produtos.push(produto.value)
+                precos.push(preco.vlaue)
+                quantidades.push(quantidade.value)
+                alert("Produto castrado com sucesso")
+            }
+            else{
+                alertaCadastroInvalido()
+            }
+
+            produto.value=""
+            preco.value=""
+            quantidade.value=""
+
+            RenderizarTabela()
             FecharCadastro()
         }
+
 
     </script>
 </body>
