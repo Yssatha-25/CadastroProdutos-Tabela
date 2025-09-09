@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Produtos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body border="5" id="corpoTabela">
+
+<body>
     <h1>Gerenciador de Produtos</h1>
-    <button>Cadastrar produto</button>
-    <table>
-        <th>
-            <tr>Descrição</tr>
-            <tr>Preço</tr>
-            <tr>Quantidade</tr>
-            <tr>Valor total</tr>
-            <tr>Ações</tr>
-        </th>
-    </table>
 
-    <div id="CadastroProdutos" class="hidden"></div>
-        <p>Nome</p>
-        <input type="text" placeholder="Digite seu nome" id="nomeInput">
-        <p>Preço</p>
-        <input type="text" placeholder="Digite o preço do produto" id="precoInput">
-        <p>Quantidade</p>
-        <input type="text" placeholder="Informe a quantidade de unidades desse produto" id="qntdInput">
+    <div id="TabelaProdutos">
+        <button id="botaoCadastrarProduto" onclick="MostrarCadastro()">Cadastrar produto</button>
+        <br><br>
+
+
+        <table border="1">
+            <tr>
+                <th>Nome</th>
+                <th>Matricula</th>
+                <th>Nota</th>
+                <th>Situação</th>
+                <th>Situação</th>
+            </tr>
+            <tbody id "corpo"></tbody>
+        </table>
+    </div>
+
+    <div id="CadastroProdutos" class="hidden">
+        <p>Nome <input type="text" placeholder="Digite seu nome" id="produtoInput"></p>
+        <p>Preço <input type="text" placeholder="Digite o preço do produto" id="precoInput"></p>
+        <p>Quantidade <input type="text" placeholder="Informe a quantidade de unidades desse produto" id="qntdInput"></p>
         <br>
-        <button>Salvar</button>
-        <button>Cancelar</button>
+        <button onclick="CadastrarProduto()">Salvar</button>
+        <button onclick="FecharCadastro()">Cancelar</button>
+    </div>
 
-    <script></script>
+    <script>
+        function MostrarCadastro() {
+            document.getElementById("TabelaProdutos").classList.add("hidden")
+            document.getElementById("CadastroProdutos").classList.remove("hidden")
+        }
+
+        function FecharCadastro() {
+            document.getElementById("CadastroProdutos").classList.add("hidden")
+            document.getElementById("TabelaProdutos").classList.remove("hidden")
+        }
+
+        function CadastrarProduto(){
+            FecharCadastro()
+        }
+
+    </script>
 </body>
+
 </html>
