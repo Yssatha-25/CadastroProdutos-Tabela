@@ -37,16 +37,6 @@
     </div>
 
     <script>
-        function MostrarCadastro() {
-            document.getElementById("TabelaProdutos").classList.add("hidden")
-            document.getElementById("CadastroProdutos").classList.remove("hidden")
-        }
-
-        function FecharCadastro() {
-            document.getElementById("CadastroProdutos").classList.add("hidden")
-            document.getElementById("TabelaProdutos").classList.remove("hidden")
-        }
-
         const produtos=[]
         const precos=[]
         const quantidades=[]
@@ -57,6 +47,7 @@
         let quantidade=document.getElementById("qntdInput")
 
         const tabelaCorpo=document.getElementById("tabelaCorpo")
+        const TabelaProdutos=document.getElementById("TabelaProdutos")
     
         function CadastrarProduto(){
             let existeProduto=produtos.includes(produto.value)
@@ -76,31 +67,51 @@
                 alert("Produto invalido.")
                 // alertaCadastroInvalido()
             }
-            
+
+            console.log(produtos, precos, quantidades, valores)
+        }
+
+        function MostrarCadastro() {
+            document.getElementById("TabelaProdutos").classList.add("hidden")
+            document.getElementById("CadastroProdutos").classList.remove("hidden")
+        }
+
+        function FecharCadastro() {
             produto.value=""
             preco.value=""
             quantidade.value=""
-
-            console.log(produtos)
-            console.log(precos)
-            console.log(quantidades)
-            console,log(valores)
+            document.getElementById("CadastroProdutos").classList.add("hidden")
+            document.getElementById("TabelaProdutos").classList.remove("hidden")
         }
+
 
         function RenderizarTabela(){
             tabelaCorpo.innerHTML=""
 
             for(let i=0; i<produtos.length; i++){
                 const linha=document.createElement("tr")
-                linha.innerHTML= `
-                    <td> ${produtos[i]} </td>
-                    <td> ${precos[i]} R$ </td>
-                    <td> ${quantidades[i]} </td>
-                    <td> ${valores[i]} R$ </td>
+                    linha.innerHTML= `
+                        <td> ${produtos[i]} </td>
+                        <td> ${precos[i]} R$ </td>
+                        <td> ${quantidades[i]} </td>
+                        <td> ${valores[i]} R$ </td>
+                        <button onclick="RemoverProduto(${i})" id="botaoRemoverProduto">Remover produto</button>
                 `
                 tabelaCorpo.appendChild(linha)
             }
         }
+
+        function RemoverProduto(indice){
+            produtos.splice(indice, 1)
+            precos.splice(indice, 1)
+            quantidades.splice(indice, 1)
+            valores.splice(indice, 1)
+
+            console.log(produtos, precos, quantidades, valores)
+
+            RenderizarTabela()
+        }
+        
 
         
 
