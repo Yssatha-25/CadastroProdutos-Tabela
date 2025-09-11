@@ -1,3 +1,75 @@
 .hidden{
     display: none;
 }
+
+body{
+    background-color: rgb(23, 1, 43);
+    color: antiquewhite;
+    font-family: 'Courier New', Courier, monospace;
+    align-items:center;
+}
+
+.titulo{
+    color: rgb(248, 64, 165);
+}
+
+.aviso{
+    color: rgb(238, 69, 125);
+}
+
+
+
+
+.botao{
+    font-size: large;
+    color: rgb(44, 3, 82);
+    background-color: rgb(247, 58, 162);
+    border-radius: 5px;
+    border-color: rgb(255, 17, 148);
+    height: 30px;
+    width: 200px;
+}
+.botao:hover{
+    background-color: rgb(250, 106, 185);
+    cursor: pointer;
+}
+
+
+.botaoMenor{
+    color: rgb(44, 3, 82);
+    background-color: rgb(247, 58, 162);
+    border-radius: 4px;
+    height: px;
+    font-size: medium;
+}
+.botaoMenor:hover{
+    background-color: rgb(250, 106, 185);
+    cursor: pointer;
+}
+
+.tabela{
+    background-color: rgb(20, 0, 37);
+    border-color: rgb(255, 17, 148);
+    color: antiquewhite;
+    font-size: x-large;
+    border-radius: 5px;
+}
+
+.input{
+    background-color: rgb(20, 0, 37);
+    border-color: rgb(255, 17, 148);
+    font-size:xx-large;
+    border-radius: 8px;
+    width: 850px;
+    color: rgb(255, 17, 148);
+    
+}
+.input::placeholder{
+    color: rgb(255, 17, 148);
+}
+
+.alerta{
+    color: rgb(255, 17, 148);
+    font-size: xx-large;
+    font-weight: bold;
+}
