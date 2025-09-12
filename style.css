@@ -6,11 +6,10 @@ body{
     background-color: rgb(23, 1, 43);
     color: antiquewhite;
     font-family: 'Courier New', Courier, monospace;
-    align-items:center;
 }
 
 .titulo{
-    color: rgb(248, 64, 165);
+    color: rgb(253, 6, 129);
 }
 
 .aviso{
@@ -22,10 +21,10 @@ body{
 
 .botao{
     font-size: large;
-    color: rgb(44, 3, 82);
-    background-color: rgb(247, 58, 162);
+    color: rgb(20, 0, 37);
+    background-color: rgb(253, 6, 129);
     border-radius: 5px;
-    border-color: rgb(255, 17, 148);
+    border-color: rgb(253, 6, 129);
     height: 30px;
     width: 200px;
 }
@@ -36,40 +35,51 @@ body{
 
 
 .botaoMenor{
-    color: rgb(44, 3, 82);
-    background-color: rgb(247, 58, 162);
+    color: rgb(20, 0, 37);
+    background-color: rgb(253, 6, 129);
     border-radius: 4px;
     height: px;
-    font-size: medium;
+    font-size: large;
 }
 .botaoMenor:hover{
     background-color: rgb(250, 106, 185);
     cursor: pointer;
 }
 
-.tabela{
+
+
+table{
     background-color: rgb(20, 0, 37);
-    border-color: rgb(255, 17, 148);
+    border-color: rgb(253, 6, 129);
     color: antiquewhite;
-    font-size: x-large;
+    font-size: xx-large;
     border-radius: 5px;
+    text-align: center;
 }
 
 .input{
     background-color: rgb(20, 0, 37);
-    border-color: rgb(255, 17, 148);
+    border-color: rgb(253, 6, 129);
     font-size:xx-large;
     border-radius: 8px;
     width: 850px;
-    color: rgb(255, 17, 148);
+    color: rgb(253, 6, 129);
     
 }
 .input::placeholder{
-    color: rgb(255, 17, 148);
+    color: rgb(253, 6, 129);
 }
 
 .alerta{
-    color: rgb(255, 17, 148);
+    color: rgb(253, 6, 129);
     font-size: xx-large;
     font-weight: bold;
+}
+
+.alinhado{
+    display: flex;
+    flex-direction: column; /* um embaixo do outro */
+    align-items: center;   /* centraliza horizontal */
+    justify-content: center; /* centraliza vertical (se quiser no meio da tela toda) */
+    /* min-height: 100vh; ocupa a tela toda */
 }

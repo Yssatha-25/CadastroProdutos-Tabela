@@ -11,31 +11,36 @@
 <body>
     <h1 class="titulo">Gerenciador de Produtos</h1>
 
-    <div id="TabelaProdutos">
-        <button id="botaoCadastrarProduto" onclick="MostrarCadastro()" class="botao">Cadastrar produto</button>
-        <br><br>
+    <div class="alinhado">
+        <div id="TabelaProdutos">
+            <button id="botaoCadastrarProduto" onclick="MostrarCadastro()" class="botao">Cadastrar produto</button>
+            <br><br>
 
 
-        <table border="1" class="tabela">
-            <tr>
-                <th>Descrição</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
-                <th>Valor total</th>
-                <th>Ações</th>
-            </tr>
-            <tbody id="tabelaCorpo"></tbody>
-        </table>
-    </div>
+            <table border="1">
+                <tr>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Valor total</th>
+                    <th>Ações</th>
+                </tr>
+                <tbody id="tabelaCorpo"></tbody>
+            </table>
+        </div>
 
-    <div id="CadastroProdutos" class="hidden">
-        <p style="font-size: xx-large;">Descrição          <input type="text" placeholder="Digite o nome o produto" id="produtoInput" class="input"></p>
-        <p style="font-size: xx-large;">Preço          <input type="number" placeholder="Digite o preço do produto" id="precoInput" class="input"></p>
-        <p style="font-size: xx-large;">Quantidade          <input type="number" placeholder="Informe a quantidade de unidades desse produto" id="qntdInput" class="input">
-        </p>
-        <br>
-        <button onclick="CadastrarProduto()" class="botao">Salvar</button>
-        <button onclick="FecharCadastro()" class="botao">Cancelar</button>
+        <div id="CadastroProdutos" class="hidden">
+            <p style="font-size: xx-large;">Descrição <input type="text" placeholder="Digite o nome o produto"
+                    id="produtoInput" class="input"></p>
+            <p style="font-size: xx-large;">Preço <input type="number" placeholder="Digite o preço do produto"
+                    id="precoInput" class="input"></p>
+            <p style="font-size: xx-large;">Quantidade <input type="number"
+                    placeholder="Informe a quantidade de unidades desse produto" id="qntdInput" class="input">
+            </p>
+            <br>
+            <button onclick="CadastrarProduto()" class="botao">Salvar</button>
+            <button onclick="FecharCadastro()" class="botao">Cancelar</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
