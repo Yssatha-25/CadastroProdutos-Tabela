@@ -22,9 +22,12 @@ function CadastrarProduto() {
     if (qntd.includes(".")) {
         AlertaCadastroInvalido()
     }
+    else if (quantidade.value<0  || preco.value<0) {
+        AlertaCadastroInvalido()
+    }
     else {
 
-        if (existeProduto == false && produto.value != "" && preco.value != "" && quantidade.value != "") {
+        if (existeProduto == false && produto.value != "" && preco.value != "" && preco.value>0 && quantidade.value != "" && quantidade.value>0) {
             produtos.push(produto.value)
             precos.push(parseFloat(preco.value))
             quantidades.push(parseInt(quantidade.value))
@@ -91,10 +94,16 @@ function RemoverProduto(indice) {
 function AlertaCadastroInvalido() {
     let qntd = quantidade.value
 
-    if (qntd.includes(".")) {
+    if (qntd.includes(".") || qntd<0) {
         alerta.innerHTML = " "
         alerta.innerHTML += `
-        <p class="alerta">Digite uma quantidade válida (número inteiro).</p>
+        <p class="alerta">Digite uma quantidade válida (número inteiro e positivo).</p>
+        `
+    }
+    else if(preco.value<0){
+        alerta.innerHTML = " "
+        alerta.innerHTML += `
+        <p class="alerta">Digite um preço válido (número real e positivo).</p>
         `
     }
     else if (produto.value == "" || preco.value == "" || quantidade.value == "") {
