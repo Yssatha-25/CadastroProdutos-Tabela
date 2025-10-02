@@ -27,8 +27,8 @@ function CadastrarProduto() {
     }
     else {
 
-        if (existeProduto == false && produto.value != "" && preco.value != "" && preco.value>0 && quantidade.value != "" && quantidade.value>0) {
-            produtos.push(produto.value)
+        if (existeProduto == false && produto.value.trim() != "" && preco.value != "" && preco.value>0 && quantidade.value != "" && quantidade.value>0) {
+            produtos.push(produto.value.trim())
             precos.push(parseFloat(preco.value))
             quantidades.push(parseInt(quantidade.value))
             valores.push(parseFloat(preco.value) * parseInt(quantidade.value)) // parseFloat converte para número decimal e a parseInt para inteiro
@@ -106,7 +106,7 @@ function AlertaCadastroInvalido() {
         <p class="alerta">Digite um preço válido (número real e positivo).</p>
         `
     }
-    else if (produto.value == "" || preco.value == "" || quantidade.value == "") {
+    else if (produto.value.trim() == "" || preco.value == "" || quantidade.value == "") {
         alerta.innerHTML = " "
         alerta.innerHTML += `
         <p class="alerta">Todos os campos devem ser preenchidos.</p>
