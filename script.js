@@ -1,11 +1,4 @@
-const produtos = []
-const precos = []
-const quantidades = []
-const valores = []
 
-let produto = document.getElementById("produtoInput")
-let preco = document.getElementById("precoInput")
-let quantidade = document.getElementById("qntdInput")
 
 const tabelaCorpo = document.getElementById("tabelaCorpo")
 const TabelaProdutos = document.getElementById("TabelaProdutos")
@@ -14,38 +7,72 @@ const CadastroProdutos = document.getElementById("CadastroProdutos")
 const alerta = document.createElement("div")
 CadastroProdutos.appendChild(alerta)
 
-function CadastrarProduto() {
-    let existeProduto = produtos.includes(produto.value)
+let descricao = document.getElementById("descricaoInput")
+let preco = document.getElementById("precoInput")
+let qntd = document.getElementById("qntdInput")
 
-    let qntd = quantidade.value
+let produtos = (JSON.parse(localStorage.getItem("produtos"))   || [] );
+RenderizarTabela()
 
-    if (qntd.includes(".")) {
-        AlertaCadastroInvalido()
+
+function existe(desc) {
+
+    for (let i = 0; i < produtos.length; i++) {
+        if (produtos[i].descricao == desc.trim) {
+            return true
+        }
     }
-    else if (quantidade.value<0  || preco.value<0) {
-        AlertaCadastroInvalido()
+
+    return false
+}
+function qntdValida(qntd) {
+
+    if (qntd.value.includes(".") && qntd < 0) {
+        return false
+    }
+    return true
+}
+function precoValido(preco) {
+
+    if (preco < 0) {
+        return false
+    }
+
+    return true
+}
+
+
+
+function CadastrarProduto() {
+
+    existe(descricao.value)
+    qntdValida(qntd)
+    precoValido(parseFloat(preco.value))
+
+    if (!existe(descricao) && descricao.value.trim() != "" && preco.value != "" && qntd.value != "" && qntdValida(qntd) && precoValido(preco)) {
+
+        let produto = {
+            descricao: descricao.value.trim(),
+            preco: parseFloat(preco.value),
+            qntd: parseInt(qntd.value),
+            valor: parseFloat(preco.value) * parseInt(qntd.value)
+        }  // parseFloat converte para número decimal e a parseInt para inteiro
+
+        produtos.push(produto)
+
+
+        localStorage.setItem("produtos", JSON.stringify(produtos))
+
+        console.log(produtos)
+
+        alert("O produto foi castrado com sucesso!")
+
+        FecharCadastro()
+        RenderizarTabela()
     }
     else {
-
-        if (existeProduto == false && produto.value.trim() != "" && preco.value != "" && preco.value>0 && quantidade.value != "" && quantidade.value>0) {
-            produtos.push(produto.value.trim())
-            precos.push(parseFloat(preco.value))
-            quantidades.push(parseInt(quantidade.value))
-            valores.push(parseFloat(preco.value) * parseInt(quantidade.value)) // parseFloat converte para número decimal e a parseInt para inteiro
-
-            alert("O produto foi castrado com sucesso!")
-
-            FecharCadastro()
-            RenderizarTabela()
-        }
-        else {
-            AlertaCadastroInvalido()
-        }
+        AlertaCadastroInvalido()
     }
-
-
-
-    console.log(produtos, precos, quantidades, valores)
 }
 
 function MostrarCadastro() {
@@ -56,9 +83,9 @@ function MostrarCadastro() {
 function FecharCadastro() {
     alerta.innerHTML = ""
 
-    produto.value = ""
+    descricao.value = ""
     preco.value = ""
-    quantidade.value = ""
+    qntd.value = ""
     document.getElementById("CadastroProdutos").classList.add("hidden")
     document.getElementById("TabelaProdutos").classList.remove("hidden")
 }
@@ -70,10 +97,10 @@ function RenderizarTabela() {
     for (let i = 0; i < produtos.length; i++) {
         const linha = document.createElement("tr")
         linha.innerHTML = `
-                <td> ${produtos[i]} </td>
-                <td> ${precos[i]} R$ </td>
-                <td> ${quantidades[i]} </td>
-                <td> ${valores[i]} R$ </td>
+                <td> ${produtos[i].descricao.trim()} </td>
+                <td> ${produtos[i].preco} </td>
+                <td> ${produtos[i].qntd} </td>
+                <td> ${produtos[i].valor} </td>
                 <button onclick="RemoverProduto(${i})" id="botaoRemoverProduto" class="botaoMenor">Remover produto</button>
         `
         tabelaCorpo.appendChild(linha)
@@ -82,40 +109,42 @@ function RenderizarTabela() {
 
 function RemoverProduto(indice) {
     produtos.splice(indice, 1)
-    precos.splice(indice, 1)
-    quantidades.splice(indice, 1)
-    valores.splice(indice, 1)
 
-    console.log(produtos, precos, quantidades, valores)
+    console.log(produtos)
 
     RenderizarTabela()
 }
 
 function AlertaCadastroInvalido() {
-    let qntd = quantidade.value
 
-    if (qntd.includes(".") || qntd<0) {
+    if (qntd.value.includes(".") || qntd.value < 0) {
         alerta.innerHTML = " "
         alerta.innerHTML += `
         <p class="alerta">Digite uma quantidade válida (número inteiro e positivo).</p>
         `
     }
-    else if(preco.value<0){
+    else if (preco.value < 0) {
         alerta.innerHTML = " "
         alerta.innerHTML += `
         <p class="alerta">Digite um preço válido (número real e positivo).</p>
         `
     }
-    else if (produto.value.trim() == "" || preco.value == "" || quantidade.value == "") {
+    else if (descricao.value.trim() == "" || preco.value == "" || qntd.value == "") {
         alerta.innerHTML = " "
         alerta.innerHTML += `
         <p class="alerta">Todos os campos devem ser preenchidos.</p>
         `
     }
-    else {
+    else if (existe(descricao)) {
         alerta.innerHTML = " "
         alerta.innerHTML += `
         <p class="alerta">Um produto com essa descrição já foi cadastrado.</p>
+        `
+    }
+    else {
+        alerta.innerHTML = " "
+        alerta.innerHTML += `
+        <p class="alerta">????</p>
         `
     }
 }
