@@ -60,7 +60,6 @@ function CadastrarProduto() {
 
         produtos.push(produto)
 
-
         localStorage.setItem("produtos", JSON.stringify(produtos))
 
         console.log(produtos)
@@ -76,8 +75,8 @@ function CadastrarProduto() {
 }
 
 function MostrarCadastro() {
-    document.getElementById("TabelaProdutos").classList.add("hidden")
-    document.getElementById("CadastroProdutos").classList.remove("hidden")
+    TabelaProdutos.classList.add("hidden")
+    CadastroProdutos.classList.remove("hidden")
 }
 
 function FecharCadastro() {
@@ -86,8 +85,8 @@ function FecharCadastro() {
     descricao.value = ""
     preco.value = ""
     qntd.value = ""
-    document.getElementById("CadastroProdutos").classList.add("hidden")
-    document.getElementById("TabelaProdutos").classList.remove("hidden")
+    CadastroProdutos.classList.add("hidden")
+    TabelaProdutos.classList.remove("hidden")
 }
 
 
@@ -109,6 +108,8 @@ function RenderizarTabela() {
 
 function RemoverProduto(indice) {
     produtos.splice(indice, 1)
+
+    localStorage.removeItem("produtos", JSON.stringify(produtos))
 
     console.log(produtos)
 
